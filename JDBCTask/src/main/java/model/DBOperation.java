@@ -49,6 +49,7 @@ public class DBOperation {
     public void changeNewFlag(){
         newFlag = !newFlag;
     }
+    //update 
     public void update(Employee emp){
         try{
             //There is a bug Here you must fix
@@ -63,11 +64,14 @@ public class DBOperation {
                 responseSet.insertRow();
                 changeNewFlag();
             }
+//            ashraf
+
             
         }catch(SQLException exception){
             exception.printStackTrace();
         }
     }
+    //delete
     public void delete(){
         try{
             if(!responseSet.next())
@@ -77,6 +81,7 @@ public class DBOperation {
             exception.printStackTrace();
         }
     }
+    //get First employee
     public Employee getFisrt(){
         try{
             if(responseSet.first())
