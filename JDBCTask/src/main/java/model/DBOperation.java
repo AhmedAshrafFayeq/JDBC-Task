@@ -20,10 +20,6 @@ public class DBOperation {
     
     Statement createStatement = null;
     PreparedStatement insertStatment = null;
-    private final String insertQuery = "INSERT INTO employees (Id, Phone_Number, F_Name, L_Name, Age, Sex, Address) VALUES(?, ?, ?, ?, ?, ?, ?)";
-    private final String maleUpdate = "update employees set F_Name=concat('MR ', F_Name) where sex='male'";
-    private final String femaleUpdate = "update employees set F_Name=concat('MRS ', F_Name) where sex='female'";
-    private final String vacUpdate = "update employees set Vaction_Balance=45 where Age>45";
     private final String createQuery = "CREATE TABLE IF NOT EXISTS `employees` (\n" +
         "  `Id` INT UNSIGNED NOT NULL,\n" +
         "  `Phone_Number` INT NULL,\n" +
