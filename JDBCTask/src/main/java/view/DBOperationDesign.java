@@ -100,6 +100,7 @@ public class DBOperationDesign extends GridPane {
             changeView(operator.getNext());
         });
         btnUpdate.setOnAction((event)->{
+            operator.changeNewFlag();
             operator.update(getUpdates());
         });
         btnLast.setOnAction((event)->{

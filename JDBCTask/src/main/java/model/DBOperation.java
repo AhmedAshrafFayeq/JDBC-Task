@@ -52,8 +52,11 @@ public class DBOperation {
     //update 
     public void update(Employee emp){
         try{
-            //There is a bug Here you must fix
-            responseSet.moveToInsertRow();
+            if(newFlag){
+                //you must check for the new flag but it doesn't work for the first 
+                //run of the application
+                responseSet.moveToInsertRow();
+            }
             if(emp!=null){
                 responseSet.updateInt("id", emp.Id);
                 responseSet.updateInt("phone", emp.phone);
