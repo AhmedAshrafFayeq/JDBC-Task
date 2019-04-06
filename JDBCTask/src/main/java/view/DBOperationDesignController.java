@@ -12,14 +12,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import static javafx.scene.layout.Region.USE_PREF_SIZE;
+import model.Employee;
 
 /**
  * FXML Controller class
  *
  * @author ahmed
  */
-public class DBOperationDesignController implements Initializable {
+public class DBOperationDesignController extends GridPane{
 
     @FXML
     private TextField txtId;
@@ -48,15 +50,7 @@ public class DBOperationDesignController implements Initializable {
     @FXML
     private Button btnLast;
     
-    private final DBOperator operator;
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    private final DBOperator operator; 
 
     public DBOperationDesignController(DBOperator operator) {
         this.operator = operator;
@@ -87,6 +81,29 @@ public class DBOperationDesignController implements Initializable {
         });
         
         
+    }
+    public void changeView(Employee emp){
+        if(emp!=null){
+            txtId.setText(""+emp.Id);
+            txtFname.setText(emp.firstName);
+            txtMname.setText(emp.middleName);
+            txtEmail.setText(emp.email);
+            txtPhone.setText(""+emp.phone);
+            txtLname.setText(emp.lastName);
+        }
+    }
+    public Employee getUpdates(){
+        return new Employee(Integer.parseInt(txtId.getText().toString()), Integer.parseInt(txtPhone.getText().toString()),
+                txtFname.getText(), txtMname.getText(),
+        txtLname.getText(), txtEmail.getText());
+    }
+    public void clearInput(){
+        txtId.setText("");
+        txtFname.setText("");
+        txtMname.setText("");
+        txtEmail.setText("");
+        txtPhone.setText("");
+        txtLname.setText("");
     }
     
 }

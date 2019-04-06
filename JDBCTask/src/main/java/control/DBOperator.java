@@ -6,32 +6,64 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.DBOperation;
+import model.Employee;
+import view.DBOperationDesignController;
 
 
 public class DBOperator extends Application {
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+    DBOperationDesignController dbDesign;
+    DBOperation dbOperation;
+    public DBOperator() {
+        dbDesign = new DBOperationDesignController(this);
+        dbOperation = new DBOperation();
+        if(dbOperation.connect()){
+            initial();
+        }else{
+            System.out.println("Couldn't Connect to the Database");
+        }
         
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-        
-        stage.setTitle("JavaFX and Maven");
-        stage.setScene(scene);
-        stage.show();
     }
-
-    /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        
+        Scene scene = new Scene(dbDesign);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("DB Operation");
+        primaryStage.show();
+    }
+    public static void main(String[] args){
         launch(args);
+    }
+    
+    @Override
+    public void stop(){
+        dbOperation.close();
+    }
+    public void initial(){
+        dbDesign.changeView(dbOperation.initial());
+    }
+    public void changeNewFlag(){
+        dbOperation.changeNewFlag();
+    }
+    public void update(Employee employee){
+        dbOperation.update(employee);
+    }
+    public void delete(){
+        dbOperation.delete();
+    }
+    public Employee getNext(){
+        return dbOperation.getNext();
+    }
+    public Employee getLast(){
+        return dbOperation.getLast();
+    }
+    public Employee getPrevious(){
+        return dbOperation.getPrevious();
+    }
+    public Employee getFirst(){
+        return dbOperation.getFisrt();
     }
 
 }
