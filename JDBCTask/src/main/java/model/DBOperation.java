@@ -51,6 +51,7 @@ public class DBOperation {
     }
     public void update(Employee emp){
         try{
+            //There is a bug Here you must fix
             responseSet.moveToInsertRow();
             if(emp!=null){
                 responseSet.updateInt("id", emp.Id);
