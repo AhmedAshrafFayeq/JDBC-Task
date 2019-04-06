@@ -13,7 +13,7 @@ public class MyDataSourceFactory {
         FileInputStream inputStream = null;
         MysqlDataSource mysqlDataSource = null;
         try{
-            inputStream = new FileInputStream("/db.properties");
+            inputStream = new FileInputStream("src/main/resources/config/db.properties");
             propertyFile.load(inputStream);
             mysqlDataSource = new MysqlDataSource();
             mysqlDataSource.setUser(propertyFile.getProperty("MYSQL_DB_USERNAME"));

@@ -16,45 +16,12 @@ public class DBOperation {
     
     boolean newFlag = false;
     private final String queryString = "select id, fname, lname, mname, email, phone from employee";
-    /////////////////////////////////////////////////////////
     
-    Statement createStatement = null;
-    PreparedStatement insertStatment = null;
-    private final String createQuery = "CREATE TABLE IF NOT EXISTS `employees` (\n" +
-        "  `Id` INT UNSIGNED NOT NULL,\n" +
-        "  `Phone_Number` INT NULL,\n" +
-        "  `F_Name` VARCHAR(45) NULL,\n" +
-        "  `L_Name` VARCHAR(45) NULL,\n" +
-        "  `Age` INT NULL,\n" +
-        "  `Sex` VARCHAR(45) NULL,\n" +
-        "  `Address` VARCHAR(45) NULL,\n" +
-        "  `Vaction_Balance` INT DEFAULT '30',\n" +
-        "  PRIMARY KEY (`Id`));";
-    ///////////////////////////////////////////////////////////////////
+
     
     public DBOperation() {
         dataSource  = MyDataSourceFactory.getMySQLDataSource();
-    }
-    public boolean connect2(){
-        try{
-            connection = dataSource.getConnection();
-            connection.setAutoCommit(true);
-            return true;
-        }catch(SQLException exception){
-            exception.printStackTrace();
-        }
-        return false;
-    }
     
-    public boolean createTable(){
-        try{
-            createStatement = connection.createStatement(responseSet.TYPE_SCROLL_SENSITIVE, responseSet.CONCUR_UPDATABLE);
-            createStatement.execute(createQuery);
-            return true;
-        }catch(SQLException exception){
-            exception.printStackTrace();
-        }
-        return false;
     }
     //////////////////////////////////////////////////////////////
     public boolean connect(){
@@ -84,11 +51,8 @@ public class DBOperation {
     }
     public void update(Employee emp){
         try{
-            if(newFlag){
-                responseSet.moveToInsertRow();
-            }
+            responseSet.moveToInsertRow();
             if(emp!=null){
-                System.out.println(emp.Id+emp.phone+emp.firstName+emp.middleName);
                 responseSet.updateInt("id", emp.Id);
                 responseSet.updateInt("phone", emp.phone);
                 responseSet.updateString("fname", emp.firstName);

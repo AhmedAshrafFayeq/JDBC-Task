@@ -2,20 +2,18 @@ package control;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.DBOperation;
 import model.Employee;
-import view.DBOperationDesignController;
+import view.DBOperationDesign;
 
 
 public class DBOperator extends Application {
-    DBOperationDesignController dbDesign;
+    DBOperationDesign dbDesign;
     DBOperation dbOperation;
     public DBOperator() {
-        dbDesign = new DBOperationDesignController(this);
+        dbDesign = new DBOperationDesign(this);
         dbOperation = new DBOperation();
         if(dbOperation.connect()){
             initial();
