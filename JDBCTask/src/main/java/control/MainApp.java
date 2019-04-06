@@ -1,4 +1,4 @@
-package com.mycompany.jdbctask;
+package control;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
